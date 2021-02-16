@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<?php
+    include("includes/classes/Account.php");
+    include("includes/classes/Errors.php");
+    $user_account = new Account();
+    include("includes/handler/handleRegistration.php");
+    include("includes/handler/handleLogin.php");
+    //This function is used for keeping the last values of the fields of the registration form when they are posted once with some errors
+    function getValue($field){
+        if(isset($_POST[$field])){
+            echo $_POST[$field];
+        }
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,27 +37,48 @@
             <h3>Create Account for Free</h3>
             <p>
                 <label for="username">Name: </label>
-                <input id="username" name="username" type="text" placeholder="Shehabul Islam Sawraz" required>
+                <input id="username" name="username" type="text" placeholder="Shehabul Islam Sawraz" value="<?php getValue('username') ?>" required>
+                <?php 
+                    echo $user_account->getError(Errors::$username_error); 
+                ?>
             </p>
             <p>
                 <label for="firstname">First Name: </label>
-                <input id="firstname" name="firstname" type="text" placeholder="Shehabul Islam" required>
+                <input id="firstname" name="firstname" type="text" placeholder="Shehabul Islam" value="<?php getValue('firstname') ?>" required>
+                <?php 
+                    echo $user_account->getError(Errors::$firstname_error); 
+                ?>
             </p>
             <p>
                 <label for="lastname">Last Name: </label>
-                <input id="lastname" name="lastname" type="text" placeholder="Sawraz" required>
+                <input id="lastname" name="lastname" type="text" placeholder="Sawraz" value="<?php getValue('lastname') ?>" required>
+                <?php 
+                    echo $user_account->getError(Errors::$lastname_error); 
+                ?>
             </p>
             <p>
                 <label for="email">E-mail: </label>
-                <input id="email" name="email" type="email" placeholder="sawraz@gmail.com" required>
+                <input id="email" name="email" type="email" placeholder="sawraz@gmail.com" value="<?php getValue('email') ?>" required>
+                <?php 
+                    echo $user_account->getError(Errors::$email_unmatch); 
+                ?>
+                <?php 
+                    echo $user_account->getError(Errors::$invalid_email); 
+                ?>
             </p>
             <p>
                 <label for="email2">Confirm E-mail: </label>
-                <input id="email2" name="email2" type="email" placeholder="sawraz@gmail.com" required>
+                <input id="email2" name="email2" type="email" placeholder="sawraz@gmail.com" value="<?php getValue('email2') ?>" required>
             </p>
             <p>
                 <label for="password">Password: </label>
                 <input id="password" name="password" type="password" placeholder="Your Password" required>
+                <?php 
+                    echo $user_account->getError(Errors::$password_unmatch); 
+                ?>
+                <?php 
+                    echo $user_account->getError(Errors::$invalid_password); 
+                ?>
             </p>
             <p>
                 <label for="password2">Confirm Password: </label>
@@ -53,34 +87,5 @@
             <button type="submit" name="signInButton">Sign Up</button>
         </form>
     </div>
-    <?php
-        function setPassword($inputText){
-            $inputText = strip_tags($inputText);
-            return $inputText;
-        }
-        function setUsername($inputText){
-            $inputText = strip_tags($inputText);
-            $inputText = str_replace(" ","",$inputText);
-            return $inputText;
-        }
-        function setString($inputText){
-            $inputText = strip_tags($inputText);
-            $inputText = str_replace(" ","",$inputText);
-            $inputText = ucfirst(strtolower($inputText));
-            return $inputText;
-        }
-        if(isset($_POST['loginButton'])){
-            echo "Login Button Pressed.<br>";
-        }
-        elseif(isset($_POST['signInButton'])){
-            $username = setUsername($_POST['username']);
-            $firstname = setString($_POST['firstname']);
-            $lastname = setString($_POST['lastname']);
-            $email = setString($_POST['email']);
-            $email2 = setString($_POST['email2']);
-            $password = setPassword($_POST['password']);
-            $password2 = setPassword($_POST['password2']);
-        }
-    ?>
 </body>
 </html>
