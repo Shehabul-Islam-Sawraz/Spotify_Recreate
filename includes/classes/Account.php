@@ -21,6 +21,17 @@
                 return false;
             }
         }
+        public function login($un,$pw){
+            $pw = md5($pw);
+            $login_query = mysqli_query($this->conn,"SELECT * FROM userinfo WHERE username='$un' AND password='$pw'");
+            if(mysqli_num_rows($login_query)==1){
+                return true;
+            }
+            else{
+                array_push($this->errorArray, Errors:: $loginFailed);
+                return false;
+            }
+        }
         public function getError($error){
             if(!in_array($error,$this->errorArray)){
                 $error="";

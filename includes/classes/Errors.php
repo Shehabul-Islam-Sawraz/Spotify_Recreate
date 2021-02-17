@@ -9,5 +9,6 @@
         public static $email_taken = "The email is already in use. Use another Account!";
         public static $password_unmatch = "The passwords don't match.";
         public static $invalid_password = "The password must contain at least one uppercase and one lowercase letter, at least one special character or number and it must be at least 8 characters long.";
+        public static $loginFailed = "Incorrect Username or Password.";
     }
 ?>

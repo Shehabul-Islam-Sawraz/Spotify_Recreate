@@ -26,6 +26,7 @@
             
             $successful_reg = $user_account->register($username,$firstname,$lastname,$email,$email2,$password,$password2);
             if($successful_reg == true){
+                $_SESSION['userLoggedIn'] = $username;
                 header('Location: index.php');
             }
         }

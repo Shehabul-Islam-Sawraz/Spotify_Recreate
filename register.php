@@ -32,6 +32,9 @@
                 <input id="loginPassword" name="loginPassword" type="password" placeholder="Your Password" required>
             </p>
             <button type="submit" name="loginButton">Log In</button>
+            <?php 
+                echo $user_account->getError(Errors::$loginFailed); 
+            ?>
         </form>
 
         <form id="registerForm" action="register.php" method="POST">
