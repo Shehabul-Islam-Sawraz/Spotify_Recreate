@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
+    include("includes/configs.php");
     include("includes/classes/Account.php");
     include("includes/classes/Errors.php");
-    $user_account = new Account();
+    $user_account = new Account($conn);
     include("includes/handler/handleRegistration.php");
     include("includes/handler/handleLogin.php");
     //This function is used for keeping the last values of the fields of the registration form when they are posted once with some errors
@@ -41,6 +42,9 @@
                 <?php 
                     echo $user_account->getError(Errors::$username_error); 
                 ?>
+                <?php 
+                    echo $user_account->getError(Errors::$username_taken); 
+                ?>
             </p>
             <p>
                 <label for="firstname">First Name: </label>
@@ -64,6 +68,9 @@
                 ?>
                 <?php 
                     echo $user_account->getError(Errors::$invalid_email); 
+                ?>
+                <?php 
+                    echo $user_account->getError(Errors::$email_taken); 
                 ?>
             </p>
             <p>

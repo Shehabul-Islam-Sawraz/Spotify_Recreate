@@ -1,8 +1,10 @@
 <?php
     class Account{
         private $errorArray;
-        public function __construct(){
+        private $conn;
+        public function __construct($conn){
             $this->errorArray = array();
+            $this->conn = $conn;
         }
         public function register($username,$firstname,$lastname,$email,$email2,$password,$password2){
             $this->validateUsername($username);
@@ -13,7 +15,7 @@
 
             if(empty($this->errorArray)==true){
                 //save into database
-                return true;
+                return $this->insertUserInfo($username,$firstname,$lastname,$email,$password);
             }
             else{
                 return false;
@@ -25,6 +27,13 @@
             }
             return "<span class='errormessage'>$error</span>";
         }
+        private function insertUserInfo($un,$fn,$ln,$em,$pw){
+            $encryptedPw = md5($pw);
+            $profilePic = "assets/images/profile_pics/profilepic1.png";
+            $date = date("Y-m-d");
+            $result = mysqli_query($this->conn, "INSERT INTO userinfo VALUES ('','$un','$fn','$ln','$em','$encryptedPw','$date','$profilePic')");
+            return $result;
+        }
         private function validateUsername($un){
             if(strlen($un)<5 || strlen($un)>25){
                 array_push($this->errorArray, Errors::$username_error);
@@ -32,6 +41,11 @@
             }
 
             //Check whether the username exists
+            $checkUsername = mysqli_query($this->conn,"SELECT username FROM userinfo WHERE username='$un'");
+            if(mysqli_num_rows($checkUsername)!=0){
+                array_push($this->errorArray, Errors::$username_taken);
+                return;
+            }
         }
         private function validateFirstname($fn){
             if(strlen($fn)<3 || strlen($fn)>25){
@@ -56,6 +70,11 @@
             }
 
             //Check that the email hasn't already be used.
+            $checkemail = mysqli_query($this->conn,"SELECT email FROM userinfo WHERE email='$em1'");
+            if(mysqli_num_rows($checkemail)!=0){
+                array_push($this->errorArray, Errors::$email_taken);
+                return;
+            }
         }
         private function validatePassword($pw1,$pw2){
             if($pw1!=$pw2){

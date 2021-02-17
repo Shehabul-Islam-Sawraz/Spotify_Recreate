@@ -25,8 +25,8 @@
             $password2 = setPassword($_POST['password2']);
             
             $successful_reg = $user_account->register($username,$firstname,$lastname,$email,$email2,$password,$password2);
-            /*if($successful_reg == true){
+            if($successful_reg == true){
                 header('Location: index.php');
-            }*/
+            }
         }
 ?>
