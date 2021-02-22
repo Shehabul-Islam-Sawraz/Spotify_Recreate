@@ -3,10 +3,19 @@ body,html{
     padding: 0;
     height: 100%;
 }
+* {
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: white ;
+}
+body{
+    background-color: #181818;
+    font-size: 14px;
+    min-width: 720px;
+}
 #nowPlayingBarContainer{
     width: 100%;
     bottom: -1px;
-    background-color: #2b2a2a;
+    background-color: #272727;
     position: fixed;
     min-width: 620px;
 }
@@ -20,6 +29,29 @@ body,html{
     width: 30%;
     min-width: 180px;
 }
+#nowPlayingRight{
+    position: relative;
+    margin-top: 10px;
+}
+#nowPlayingLeft .albumArt{
+    height: 100%;
+    margin-right: 15px;
+    float: left;
+    max-width: 57px;
+    background-size: cover;
+}
+#nowPlayingLeft .trackInfo{
+    display: table;
+}
+#nowPlayingLeft .trackInfo .trackName {
+	margin: 6px 0;
+    display: inline-block;
+    width: 100%;
+}
+#nowPlayingLeft .trackInfo .artistName span {
+	font-size: 12px;
+    color: #afadad;
+}
 #nowPlayingCenter{
     width: 40%;
     align-items: center;
@@ -29,6 +61,7 @@ body,html{
 }
 #nowPlayingBar .content{
     width: 100%;
+    height: 57px;
 }
 .playerControls .buttons{
     margin: 0 auto;
@@ -56,7 +89,7 @@ body,html{
     color: #a0a0a0;
     text-align: center;
     min-width: 40px;
-    font-size: 13px;
+    font-size: 12px;
 }
 .playBackBar{
     display: flex;
@@ -80,5 +113,102 @@ body,html{
     border-radius: 2px;
 }
 .playBackBar .progressBar{
-    margin-top: 5px;
+    margin-top: 4px;
+}
+.volumeBar{
+    width: 180px;
+    position: absolute;
+    right: 0;
+}
+.volumeBar .progressBar{
+    width: 125px;
+}
+.volumeBar button{
+    margin-top: 7px;
+}
+#topContainer{
+    min-height: 100%;
+    width: 100%;
+}
+#navBarContainer{
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+}
+.navBar{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+}
+.logo img{
+    width: 38px;
+    margin-bottom: 10px;
+}
+.navBar .group{
+    border-top: 1px solid #a0a0a0;
+    padding: 10px 0;
+}
+.navItem{
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: block;
+    position: relative;
+}
+.navItemLink{
+    color: #afaaaa;
+    text-decoration: none;
+}
+.navItemLink:hover{
+    color: white;
+}
+.navItemLink .icon{
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    width: 22px;
+}
+#mainViewContainer{
+    margin-left: 220px;
+    padding-bottom: 90px;
+    width: calc(100%-220px);
+}
+#mainContent{
+    padding: 0px 20px;
+}
+#mainContent h1{
+    background: -webkit-linear-gradient(45deg, #7e97a7, #a1bfae);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.pageHeading{
+    padding: 0px;
+    text-align: center;
+}
+.gridViewItem{
+    display: inline-block;
+    margin-right: 20px;
+    width: 29%;
+    max-width: 200px;
+    min-width: 150px;
+    margin-bottom: 7px;
+}
+.gridViewItem img{
+    height: 170px;
+    width: 200px;
+    background-size: contain;
+    resize: both;
+}
+.gridViewInfo{
+    font-weight: 400;
+    text-align: center;
+    padding: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
