@@ -6,6 +6,7 @@ body,html{
 * {
     font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
     color: white ;
+    letter-spacing: 1px;
 }
 body{
     background-color: #181818;
@@ -174,7 +175,7 @@ body{
     width: 22px;
 }
 #mainViewContainer{
-    margin-left: 220px;
+    margin-left: 240px;
     padding-bottom: 90px;
     width: calc(100%-220px);
 }
@@ -211,4 +212,36 @@ body{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.gridViewItem a{
+    text-decoration: none;
+}
+.entityInfo{
+    padding: 40px 0 10px 0;
+    display: inline-block;
+    width: 100%;
+}
+.entityInfo .leftSection{
+    width: 30%;
+    float: left;
+    max-width: 250px;
+}
+.leftSection img{
+    height: 210px;
+    width: 220px;
+    background-size: contain;
+    resize: both;
+}
+.entityInfo .rightSection{
+    width: 70%;
+    float: left;
+    padding: 5px 10px 5px 0px;
+    box-sizing: border-box;
+}
+.entityInfo .rightSection h2{
+    margin-top: 0px;
+}
+.entityInfo .rightSection p{
+    color: #a7a7a7;
+    font-weight: 300;
 }

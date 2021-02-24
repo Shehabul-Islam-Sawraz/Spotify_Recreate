@@ -83,6 +83,8 @@ body, html {
     height: 38px;
     font-size: 18px;
     letter-spacing: 1px;
+    outline: none; 
+    transition: 0.4s all;
 }
 .hasAccount span{
     font-weight: bold;
@@ -97,6 +99,10 @@ body, html {
 }
 #inputContainer button:hover{
     cursor: pointer;
+    background-color: rgb(228, 153, 41);
+}
+#inputContainer button:active{
+    transform: scale(0.95);
 }
 #loginText{
     padding: 45px;
