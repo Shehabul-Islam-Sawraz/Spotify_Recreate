@@ -204,7 +204,38 @@ body{
     width: 200px;
     background-size: contain;
     resize: both;
+
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
 }
+.gridViewItem img:hover{
+    -webkit-transform: scale(0.9);
+	transform: scale(0.9);
+
+    opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 .gridViewInfo{
     font-weight: 400;
     text-align: center;
