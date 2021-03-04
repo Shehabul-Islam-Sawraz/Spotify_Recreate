@@ -14,7 +14,10 @@
         setTrack(currentPlaylist[0],currentPlaylist,false);
     });
     function setTrack(trackId, nowPlaylist, play){
-        audioElement.setTrack("assets/music/Beche_Thakar_Gaan.mp3");
+        $.post("includes/handler/ajax/getSongJSON.php", {songId:trackId} , function(data){
+            var track = JSON.parse(data);
+            audioElement.setTrack(track.path);
+        });
         audioElement.audio.autoplay = false;
         //audioElement.audio.muted = true;
         //audioElement.audio.play();
