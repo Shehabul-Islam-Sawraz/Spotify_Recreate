@@ -2,6 +2,7 @@
     include("includes/configs.php");
     include("includes/classes/Artist.php");
     include("includes/classes/Album.php");
+    include("includes/classes/Song.php");
     /*session_destroy();*/ //we will use it when we want to logout manually.
     if(isset($_SESSION['userLoggedIn'])){
         $userLoggedIn = $_SESSION['userLoggedIn'];
