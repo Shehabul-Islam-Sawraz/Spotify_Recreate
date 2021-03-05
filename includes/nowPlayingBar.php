@@ -12,11 +12,61 @@
         audioElement = new Audio();
         //console.log(audioElement);
         setTrack(currentPlaylist[0],currentPlaylist,false);
+        updateVolumeProgressBar(audioElement.audio);
+        $(".playBackBar .progressBar").mousedown(function(){
+            mouseDown = true;
+        });
+        $(".playBackBar .progressBar").mousemove(function(e){
+            if(mouseDown == true){
+                getProgressTime(e,this);
+            }
+        });
+        $(".playBackBar .progressBar").mouseup(function(e){
+            getProgressTime(e,this);
+        });
+
+
+        $(".volumeBar .progressBar").mousedown(function(){
+            mouseDown = true;
+        });
+        $(".volumeBar .progressBar").mousemove(function(e){
+            if(mouseDown == true){
+                var percentage = ( e.offsetX / $(this).width() ) *100;
+                if(percentage>=0 && percentage<=100){
+                    audioElement.audio.volume = percentage;
+                }
+            }
+        });
+        $(".volumeBar .progressBar").mouseup(function(e){
+            var percentage = ( e.offsetX / $(this).width() );
+            if(percentage>=0 && percentage<=1){
+                audioElement.audio.volume = percentage;
+            }
+        });
+
+
+        $(document).mouseup(function(){
+            mouseDown = false;
+        })
     });
+    function getProgressTime(mouse, progressBar){
+        var percentage = ( mouse.offsetX / $(progressBar).width() ) *100;
+        var seconds = audioElement.audio.duration * (percentage /100);
+        audioElement.setTime(seconds);
+    }
     function setTrack(trackId, nowPlaylist, play){
         $.post("includes/handler/ajax/getSongJSON.php", {songId:trackId} , function(data){
             var track = JSON.parse(data);
-            audioElement.setTrack(track.path);
+            $(".trackName span").text(track.title);
+            $.post("includes/handler/ajax/getArtistJSON.php", {artistId:track.artist} , function(data){
+                var artist = JSON.parse(data);
+                $(".artistName span").text(artist.name);
+            });
+            $.post("includes/handler/ajax/getAlbumJSON.php", {albumId:track.album} , function(data){
+                var album = JSON.parse(data);
+                $(".albumLink img").attr("src",album.artworkPath);
+            });
+            audioElement.setTrack(track);
         });
         audioElement.audio.autoplay = false;
         //audioElement.audio.muted = true;
@@ -28,6 +78,14 @@
         });
     }
     function playSong(){
+        if(audioElement.audio.currentTime == 0){
+            //$.post("includes/handler/ajax/updatePlays.php", {songsId:audioElement.currentPlaying.id});
+            //console.log(audioElement.currentPlaying.id);
+            console.log("Updated");
+        }
+        else{
+            console.log("Can't Update");
+        }
         $(".controlButton.play").hide();
         $(".controlButton.pause").show();
         audioElement.play();
@@ -48,10 +106,10 @@
                 </span>
                 <div class="trackInfo">
                     <span class="trackName">
-                        <span>Happy Birthday</span>
+                        <span></span>
                     </span>
                     <span class="artistName">
-                        <span>Got William</span>
+                        <span></span>
                     </span>
                 </div>
             </div>
