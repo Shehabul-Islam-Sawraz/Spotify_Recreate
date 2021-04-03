@@ -59,6 +59,11 @@
     }
 
     function nextSong(){
+        if(repeatSong==true){
+            audioElement.setTime(0);
+            playSong();
+            return;
+        }
         if(currentIndex == currentPlaylist.length-1){
             currentIndex = 0;
         }
@@ -71,9 +76,18 @@
         setTrack(trackToPlay, currentPlaylist,true);
     }
 
+    function setRepeat(){
+        repeatSong = !repeatSong;
+        var img = repeatSong ? "repeat-active.png" : "repeat.png";
+        $(".controlButton.repeat img").attr("src", "assets/images/icons/"+img);
+    }
+
     function setTrack(trackId, nowPlaylist, play){
+
+        currentIndex = currentPlaylist.indexOf(trackId);
+        pauseSong();
+
         $.post("includes/handler/ajax/getSongJSON.php", {songId:trackId} , function(data){
-            currentIndex = currentPlaylist.indexOf(trackId);
             var track = JSON.parse(data);
             $(".trackName span").text(track.title);
             $.post("includes/handler/ajax/getArtistJSON.php", {artistId:track.artist} , function(data){
@@ -160,7 +174,7 @@
                     <buttons class="controlButton next" title="Next" onclick="nextSong()">
                         <img src="assets/images/icons/next.png" alt="Next">
                     </buttons>
-                    <buttons class="controlButton repeat" title="Repeat">
+                    <buttons class="controlButton repeat" title="Repeat" onclick="setRepeat()">
                         <img src="assets/images/icons/repeat.png" alt="Repeat">
                     </buttons>
                 </div>
