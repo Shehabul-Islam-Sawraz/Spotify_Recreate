@@ -67,7 +67,17 @@ body{
 .playerControls .buttons{
     margin: 0 auto;
     display: table;
+    /*transition: all 0.3s;*/
 }
+
+/*.playerControls .buttons:hover{
+    transform: scale(0.96);
+}
+
+.playerControls .buttons:active{
+    transform: scale(1.05);
+}*/
+
 .controlButton{
     background-color: transparent;
     border: none;

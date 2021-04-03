@@ -13,6 +13,9 @@
         //console.log(audioElement);
         setTrack(currentPlaylist[0],currentPlaylist,false);
         updateVolumeProgressBar(audioElement.audio);
+        $("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove",function(e){
+            e.preventDefault();
+        });
         $(".playBackBar .progressBar").mousedown(function(){
             mouseDown = true;
         });
@@ -54,8 +57,23 @@
         var seconds = audioElement.audio.duration * (percentage /100);
         audioElement.setTime(seconds);
     }
+
+    function nextSong(){
+        if(currentIndex == currentPlaylist.length-1){
+            currentIndex = 0;
+        }
+        else{
+            currentIndex++;
+        }
+        var trackToPlay = currentPlaylist[currentIndex];
+        /*document.body.dispatchEvent(new Event('click'));
+        audioElement.audio.currentTime=0;*/
+        setTrack(trackToPlay, currentPlaylist,true);
+    }
+
     function setTrack(trackId, nowPlaylist, play){
         $.post("includes/handler/ajax/getSongJSON.php", {songId:trackId} , function(data){
+            currentIndex = currentPlaylist.indexOf(trackId);
             var track = JSON.parse(data);
             $(".trackName span").text(track.title);
             $.post("includes/handler/ajax/getArtistJSON.php", {artistId:track.artist} , function(data){
@@ -67,19 +85,29 @@
                 $(".albumLink img").attr("src",album.artworkPath);
             });
             audioElement.setTrack(track);
+            //audioElement.audio.currentTime =0;
+            if(play==true){
+                playSong();
+            }
         });
         audioElement.audio.autoplay = false;
         //audioElement.audio.muted = true;
         //audioElement.audio.play();
+        /*document.body.dispatchEvent(new Event('click'));
         document.body.addEventListener("click", function () {
             if(play == true){
                 playSong();
+                console.log("Eikhane ashche.")
             }
-        });
+        });*/
+        if(play==true){
+            playSong();
+        }
+        /*console.log(play);*/
     }
     function playSong(){
         if(audioElement.audio.currentTime == 0){
-            //$.post("includes/handler/ajax/updatePlays.php", {songsId:audioElement.currentPlaying.id});
+            $.post("includes/handler/ajax/updatePlays.php", {songsId:audioElement.currentPlaying.id});
             //console.log(audioElement.currentPlaying.id);
             console.log("Updated");
         }
@@ -129,7 +157,7 @@
                     <buttons class="controlButton pause" title="Pause" style="display: none;" onclick="pauseSong()">
                         <img src="assets/images/icons/pause.png" alt="Pause">
                     </buttons>
-                    <buttons class="controlButton next" title="Next">
+                    <buttons class="controlButton next" title="Next" onclick="nextSong()">
                         <img src="assets/images/icons/next.png" alt="Next">
                     </buttons>
                     <buttons class="controlButton repeat" title="Repeat">
