@@ -163,9 +163,9 @@
                 console.log("Eikhane ashche.")
             }
         });*/
-        if(play==true){
+        /*if(play==true){
             playSong();
-        }
+        }*/
         /*console.log(play);*/
     }
     function playSong(){
