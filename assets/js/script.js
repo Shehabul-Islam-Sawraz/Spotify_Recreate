@@ -1,8 +1,10 @@
 var currentPlaylist = [];
+var shufflePlaylist = [];
 var audioElement;
 var mouseDown = false;
 var currentIndex = 0;
 var repeatSong = false;
+var shuffle = false;
 
 function formatTime(seconds){
     var time = Math.round(seconds);
@@ -33,6 +35,7 @@ function Audio()
 {
     this.currentPlaying;
     this.audio = document.createElement('audio');
+    //This event listener is for changing to next song after a song has ended.
     this.audio.addEventListener("ended",function(){
         nextSong();
     });
