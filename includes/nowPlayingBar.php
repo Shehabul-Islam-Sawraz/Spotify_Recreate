@@ -34,8 +34,8 @@
         });
         $(".volumeBar .progressBar").mousemove(function(e){
             if(mouseDown == true){
-                var percentage = ( e.offsetX / $(this).width() ) *100;
-                if(percentage>=0 && percentage<=100){
+                var percentage = ( e.offsetX / $(this).width() );
+                if(percentage>=0 && percentage<=1){
                     audioElement.audio.volume = percentage;
                 }
             }
