@@ -1,5 +1,5 @@
 <?php
-   include("includes/header.php");
+   include("includes/includedFiles.php");
 ?>
 <h1 class="pageHeading">You Might Also Like</h1>
 <div class="gridViewContainer">
@@ -18,6 +18,3 @@
         }
     ?>
 </div>
-<?php
-    include("includes/footer.php");
-?>

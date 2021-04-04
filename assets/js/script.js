@@ -6,6 +6,15 @@ var mouseDown = false;
 var currentIndex = 0;
 var repeatSong = false;
 var shuffle = false;
+var userLoggedIn;
+
+function openPage(url){
+    if(url.indexOf("?") == -1){
+        url+="?";
+    }
+    var page = encodeURI(url+"$userLoggedIn="+userLoggedIn);
+    $("#mainContent").load(page);
+}
 
 function formatTime(seconds){
     var time = Math.round(seconds);

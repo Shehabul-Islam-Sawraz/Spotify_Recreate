@@ -1,10 +1,10 @@
 <div id="navBarContainer">
     <nav class="navBar">
-        <a href="index.php" class="logo">
+        <span class="logo" onclick="openPage('index.php')">
             <img src="assets/images/icons/logo.png">
             <img src="assets/images/icons/logo1.png" style="width:65px;
             background-color: transparent;">
-        </a>
+        </span>
         <div class="group">
             <div class="navItem">
                 <a href="search.php" class="navItemLink">Search
