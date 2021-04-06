@@ -7,8 +7,16 @@ var currentIndex = 0;
 var repeatSong = false;
 var shuffle = false;
 var userLoggedIn;
+  
+
+window.addEventListener("popstate", function ( event ) {
+  //console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+  //var page = encodeURI(document.location);
+  window.location.reload();
+});
 
 function openPage(url){
+    //console.log(url);
     if(url.indexOf("?") == -1){
         url+="?";
     }
@@ -16,6 +24,7 @@ function openPage(url){
     $("#mainContent").load(page);
     $("body").scrollTop(0);
     history.pushState(null,null,url);
+    //console.log(page);
 }
 
 function formatTime(seconds){
@@ -41,6 +50,11 @@ function updateTimeProgressBar(audio){
 function updateVolumeProgressBar(audio){
     var volume = audio.volume*100;
     $(".volumeBar .progress").css("width",volume+"%"); 
+}
+
+function playFirstSong()
+{
+    setTrack(tempPlaylist[0],tempPlaylist,true);
 }
 
 function Audio()

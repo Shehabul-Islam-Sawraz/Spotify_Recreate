@@ -190,7 +190,7 @@ body{
     -webkit-text-fill-color: transparent;
 }
 .pageHeading{
-    padding: 0px;
+    padding-top: 15px;
     text-align: center;
 }
 .gridViewItem{
@@ -339,4 +339,44 @@ body{
 .trackListRow .trackInfo .trackName{
     color: #ffffff;
     margin-bottom: 7px;
+}
+
+.artistInfo {
+    text-align: center;
+}
+
+.button {
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: transparent;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border: 2px solid #fff;
+    border-radius: 1000px;
+    padding: 12px;
+    min-width: 110px;
+}
+
+.button.green {
+    background-color: #2ebd59;
+    border-color: #2ebd59;
+}
+
+.borderBottom {
+    border-bottom: 1px solid #939393;
+    margin-bottom: 20px;
+}
+
+.trackListContainer h2,
+.gridViewContainer h2 {
+    text-align: center;
+}
+
+.gridViewContainer h2 {
+    padding-bottom: 10px;
+}
+
+[role="link"] {
+    cursor: pointer;
 }

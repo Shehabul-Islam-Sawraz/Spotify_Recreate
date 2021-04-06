@@ -8,6 +8,7 @@
 ?>
 <script>
     $(document).ready(function(){
+        $.ajaxSetup({ cache: false });
         var nowPlaylist = <?php echo $jsonArray; ?>;
         audioElement = new Audio();
         //console.log(audioElement);
@@ -193,14 +194,14 @@
         <div id="nowPlayingLeft">
             <div class="content">
                 <span class="albumLink">
-                    <img src="https://images.pexels.com/photos/19677/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="albumArt">
+                    <img role="link" tabindex="0" src="" class="albumArt">
                 </span>
                 <div class="trackInfo">
                     <span class="trackName">
-                        <span></span>
+                        <span role="link" tabindex="0"></span>
                     </span>
                     <span class="artistName">
-                        <span></span>
+                        <span role="link" tabindex="0"></span>
                     </span>
                 </div>
             </div>
