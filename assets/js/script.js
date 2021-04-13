@@ -7,20 +7,24 @@ var currentIndex = 0;
 var repeatSong = false;
 var shuffle = false;
 var userLoggedIn;
-  
+var timer;
 
 window.addEventListener("popstate", function ( event ) {
   //console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
   //var page = encodeURI(document.location);
+  history.pushState(null,null,document.location);
   window.location.reload();
 });
 
 function openPage(url){
+    if(timer != null) {
+		clearTimeout(timer);
+	}
     //console.log(url);
     if(url.indexOf("?") == -1){
         url+="?";
     }
-    var page = encodeURI(url+"$userLoggedIn="+userLoggedIn);
+    var page = encodeURI(url+"&userLoggedIn"+userLoggedIn);
     $("#mainContent").load(page);
     $("body").scrollTop(0);
     history.pushState(null,null,url);

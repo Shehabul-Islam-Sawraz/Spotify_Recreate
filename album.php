@@ -26,9 +26,9 @@
 
         <?php 
             echo "<p role='link' tabindex='0' onclick='openPage(\"artist.php?id=" . $artistId. "\")'>By ";
-            echo $artist->getName();
+            echo $artist->getName() . "</p>";
         ?>
-        </p>
+
         <p>
             <?php
                 $numOfSong = $album->getNumberOfSongs();

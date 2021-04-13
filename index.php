@@ -1,7 +1,7 @@
 <?php
    include("includes/includedFiles.php");
-   clearstatcache();
+   //clearstatcache();
 ?>
 <script> 
-    openPage('browse.php');
+    openPage("browse.php");
 </script>
