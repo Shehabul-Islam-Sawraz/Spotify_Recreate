@@ -24,11 +24,27 @@ function openPage(url){
     if(url.indexOf("?") == -1){
         url+="?";
     }
-    var page = encodeURI(url+"&userLoggedIn"+userLoggedIn);
+    var page = encodeURI(url+"&userLoggedIn="+userLoggedIn);
     $("#mainContent").load(page);
     $("body").scrollTop(0);
     history.pushState(null,null,url);
     //console.log(page);
+}
+
+function createPlaylist() {
+	console.log(userLoggedIn);
+	var popup = prompt("Enter the name of your playlist");
+	if(popup != null) {
+		$.post("includes/handler/ajax/createPlaylist.php", { name: popup, username: userLoggedIn })
+            .done(function(error) {
+                if(error != "") {
+                    alert(error);
+                    return;
+                }
+            //do something when ajax returns
+            openPage("yourMusic.php");
+		});
+	}
 }
 
 function formatTime(seconds){
