@@ -30,7 +30,7 @@
             $songIdArray = $playlist->getSongIds();
             $i = 1;
             foreach($songIdArray as $songId) {
-                $playlistSong = new Song($con, $songId);
+                $playlistSong = new Song($conn, $songId);
                 $songArtist = $playlistSong->getArtist();
                 echo "<li class='tracklistRow'>
                         <div class='trackCount'>
@@ -61,5 +61,5 @@
 
 <nav class="optionsMenu">
 	<input type="hidden" class="songId">
-	<?php echo Playlist::getPlaylistsDropdown($conn, $userLoggedIn->getUsername()); ?>
+    <?php echo Playlist::getPlaylistsDropdown($conn, $userLoggedIn->getUsername()); ?>
 </nav>
