@@ -20,7 +20,11 @@
                 <span role="link" tabindex="0" onclick="openPage('yourMusic.php')" class="navItemLink">Your Playlist</span>
             </div>
             <div class="navItem">
-                <span role="link" tabindex="0" onclick="openPage('profile.php')" class="navItemLink">Shehabul Islam</span>
+                <span role="link" tabindex="0" onclick="openPage('settings.php')" class="navItemLink">
+                    <?php
+                        echo $userLoggedIn->getFirstAndLastName();
+                    ?>
+                </span>
             </div>
         </div>
     </nav>

@@ -1,12 +1,15 @@
 <?php
     include("includes/configs.php");
+    include("includes/classes/User.php");
     include("includes/classes/Artist.php");
     include("includes/classes/Album.php");
     include("includes/classes/Song.php");
+    include("includes/classes/Playlist.php");
     /*session_destroy();*/ //we will use it when we want to logout manually.
     if(isset($_SESSION['userLoggedIn'])){
-        $userLoggedIn = $_SESSION['userLoggedIn'];
-        echo "<script>userLoggedIn = '$userLoggedIn'; </script>";
+        $userLoggedIn = new User($conn, $_SESSION['userLoggedIn']);
+        $userName = $userLoggedIn->getUsername();
+        echo "<script>userLoggedIn = '$userName'; </script>";
     }
     else{
         header("Location: register.php");
