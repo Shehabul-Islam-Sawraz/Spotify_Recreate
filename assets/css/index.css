@@ -448,7 +448,7 @@ input:focus {
     padding-left: 30px;
 }
 
-/*.optionsMenu {
+.optionsMenu {
     position: fixed;
     background-color: #282828;
     width: 200px;
@@ -482,6 +482,6 @@ input:focus {
     -moz-appearance: none;
 }
 
-.userInfo h1 {
+/*.userInfo h1 {
     text-align: center;
 }*/
