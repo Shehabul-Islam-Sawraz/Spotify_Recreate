@@ -174,7 +174,7 @@
     }
     function playSong(){
         if(audioElement.audio.currentTime == 0){
-            $.post("includes/handler/ajax/updatePlays.php", {songsId:audioElement.currentPlaying.id});
+            $.post("includes/handler/ajax/updatePlays.php", {songId:audioElement.currentPlaying.id});
             //console.log(audioElement.currentPlaying.id);
             console.log("Updated");
         }
